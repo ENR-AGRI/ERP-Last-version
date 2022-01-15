@@ -1,0 +1,517 @@
+<div class="container">
+  <form #f="ngForm">
+    <span>1/ Intérêt du porteur de projet </span>
+    <table class="table table-bordered" style="border: 4px solid #2d7574">
+      <thead>
+        <tr>
+          <th class="ss"></th>
+          <th class="ss">SS-Traitance</th>
+          <th
+            class="ss"
+            style="background-color: #2d7574; border-color: #2d7574"
+          >
+            Marge en %
+          </th>
+          <th
+            class="ss"
+            style="background-color: #2d7574; border-color: #2d7574"
+          >
+            Marge €
+          </th>
+          <th class="ss">Marge totale</th>
+          <th class="ss">Prix de vente</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>1.1. Etude préléminaire de la biomasse</td>
+
+          <td>
+            <input
+              class="form-control"
+              [(ngModel)]="
+                Interet_porteur_projet.Etude_preleminaire_biomasse.SS_Traitance
+              "
+              name="Interet_porteur_projet.Etude_preleminaire_biomasse.SS_Traitance"
+              (change)="sommeDeMarge()"
+              (change)="somme_privVente()"
+              [value]="
+                conceptions[0].Interet_porteur_projet
+                  .Etude_preleminaire_biomasse.SS_Traitance
+                  ? conceptions[0].Interet_porteur_projet
+                      .Etude_preleminaire_biomasse.SS_Traitance
+                  : Interet_porteur_projet.Etude_preleminaire_biomasse
+                      .SS_Traitance
+              "
+            />
+          </td>
+          <td style="background-color: #2d7574; border-color: #2d7574">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="
+                  Interet_porteur_projet.Etude_preleminaire_biomasse
+                    .marge_percent
+                "
+                name="Interet_porteur_projet.Etude_preleminaire_biomasse.marge_percent"
+                (change)="sommeDeMarge()"
+                (change)="somme_privVente()"
+                [value]="
+                  conceptions[0]?.Interet_porteur_projet
+                    ?.Etude_preleminaire_biomasse?.marge_percent
+                    ? conceptions[0]?.Interet_porteur_projet
+                        ?.Etude_preleminaire_biomasse?.marge_percent
+                    : Interet_porteur_projet?.Etude_preleminaire_biomasse
+                        ?.marge_percent
+                "
+              />
+              <span class="percent input-group-addon">%</span>
+            </div>
+          </td>
+          <td style="background-color: #2d7574; border-color: #2d7574">
+            <input
+              class="form-control"
+              [(ngModel)]="
+                Interet_porteur_projet.Etude_preleminaire_biomasse.marge_euro
+              "
+              name="Interet_porteur_projet.Etude_preleminaire_biomasse.marge_euro"
+              (change)="sommeDeMarge()"
+              (change)="somme_privVente()"
+              [value]="
+                conceptions[0]?.Interet_porteur_projet
+                  ?.Etude_preleminaire_biomasse?.marge_euro
+                  ? conceptions[0]?.Interet_porteur_projet
+                      ?.Etude_preleminaire_biomasse?.marge_euro
+                  : Interet_porteur_projet?.Etude_preleminaire_biomasse
+                      ?.marge_euro
+              "
+            />
+          </td>
+
+          <td>
+            <input
+              class="form-control"
+              [(ngModel)]="
+                Interet_porteur_projet.Etude_preleminaire_biomasse.marge_totale
+              "
+              name="Interet_porteur_projet.Etude_preleminaire_biomasse.marge_totale"
+              [value]="sommeDeMarge()"
+              (change)="somme_privVente()"
+            />
+          </td>
+          <td>
+            <input
+              class="form-control"
+              [(ngModel)]="
+                Interet_porteur_projet.Etude_preleminaire_biomasse
+                  .Prix_vente_Concep
+              "
+              name="Interet_porteur_projet.Etude_preleminaire_biomasse.Prix_vente_Concep"
+              [value]="somme_privVente()"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td>1.2. Rapport de préfaisabilité</td>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              class="form-control"
+              [(ngModel)]="
+                Interet_porteur_projet.Rapport_prefaisabilite.SS_Traitance
+              "
+              name="Interet_porteur_projet.Rapport_prefaisabilite.SS_Traitance"
+              (change)="sommeDeMarge2()"
+              (change)="somme_privVente2()"
+              [value]="
+                conceptions[0].Interet_porteur_projet.Rapport_prefaisabilite
+                  .SS_Traitance
+                  ? conceptions[0].Interet_porteur_projet.Rapport_prefaisabilite
+                      .SS_Traitance
+                  : Interet_porteur_projet.Rapport_prefaisabilite.SS_Traitance
+              "
+            />
+          </td>
+          <td style="background-color: #2d7574; border-color: #2d7574">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="
+                  Interet_porteur_projet.Rapport_prefaisabilite.marge_percent
+                "
+                name="Interet_porteur_projet.Rapport_prefaisabilite.marge_percent"
+                (change)="sommeDeMarge2()"
+                (change)="somme_privVente2()"
+                [value]="
+                  conceptions[0].Interet_porteur_projet.Rapport_prefaisabilite
+                    .marge_percent
+                    ? conceptions[0].Interet_porteur_projet
+                        .Rapport_prefaisabilite.marge_percent
+                    : Interet_porteur_projet.Rapport_prefaisabilite
+                        .marge_percent
+                "
+              />
+              <span class="percent input-group-addon">%</span>
+            </div>
+          </td>
+          <td style="background-color: #2d7574; border-color: #2d7574">
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="
+                Interet_porteur_projet.Rapport_prefaisabilite.marge_euro
+              "
+              name="Interet_porteur_projet.Rapport_prefaisabilite.marge_euro"
+              (change)="sommeDeMarge2()"
+              (change)="somme_privVente2()"
+              [value]="
+                conceptions[0].Interet_porteur_projet.Rapport_prefaisabilite
+                  .marge_euro
+                  ? conceptions[0].Interet_porteur_projet.Rapport_prefaisabilite
+                      .marge_euro
+                  : Interet_porteur_projet.Rapport_prefaisabilite.marge_euro
+              "
+            />
+          </td>
+          <!-- -->
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="
+                Interet_porteur_projet.Rapport_prefaisabilite.marge_totale
+              "
+              name="Interet_porteur_projet.Rapport_prefaisabilite.marge_totale"
+              (change)="somme_privVente2()"
+              [value]="sommeDeMarge2()"
+            />
+          </td>
+
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="
+                Interet_porteur_projet.Rapport_prefaisabilite.Prix_vente_Concep
+              "
+              name="Interet_porteur_projet.Rapport_prefaisabilite.Prix_vente_Concep"
+              [value]="
+                somme_privVente2()
+                  ? somme_privVente2()
+                  : conceptions[0]?.Interet_porteur_projet
+                      ?.Rapport_prefaisabilite?.Prix_vente_Concep
+              "
+            />
+          </td>
+
+          <!---->
+        </tr>
+        <tr>
+          <td>1.3. Impact économique pour l'exploitant</td>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              class="form-control"
+              [(ngModel)]="
+                Interet_porteur_projet.Impact_economique_exploitant.SS_Traitance
+              "
+              name="Interet_porteur_projet.Impact_economique_exploitant.SS_Traitance"
+              (change)="sommeDeMarge3()"
+              (change)="somme_privVente3()"
+              [value]="
+                conceptions[0]?.Interet_porteur_projet
+                  ?.Impact_economique_exploitant?.SS_Traitance
+                  ? conceptions[0]?.Interet_porteur_projet
+                      ?.Impact_economique_exploitant?.SS_Traitance
+                  : Interet_porteur_projet?.Impact_economique_exploitant
+                      ?.SS_Traitance
+              "
+            />
+          </td>
+
+          <td style="background-color: #2d7574; border-color: #2d7574">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="
+                  Interet_porteur_projet.Impact_economique_exploitant
+                    .marge_percent
+                "
+                name="Interet_porteur_projet.Impact_economique_exploitant.marge_percent"
+                (change)="sommeDeMarge3()"
+                (change)="somme_privVente3()"
+                [value]="
+                  conceptions[0]?.Interet_porteur_projet
+                    ?.Impact_economique_exploitant?.marge_percent
+                    ? conceptions[0]?.Interet_porteur_projet
+                        ?.Impact_economique_exploitant?.marge_percent
+                    : Interet_porteur_projet?.Impact_economique_exploitant
+                        ?.marge_percent
+                "
+              />
+              <span class="percent input-group-addon">%</span>
+            </div>
+          </td>
+          <td style="background-color: #2d7574; border-color: #2d7574">
+            <input
+              type="text"
+              class="form-control"
+              class="form-control"
+              [(ngModel)]="
+                Interet_porteur_projet.Impact_economique_exploitant.marge_euro
+              "
+              name="Interet_porteur_projet.Impact_economique_exploitant.marge_euro"
+              (change)="sommeDeMarge3()"
+              (change)="somme_privVente3()"
+              [value]="
+                conceptions[0]?.Interet_porteur_projet
+                  ?.Impact_economique_exploitant?.marge_euro
+                  ? conceptions[0]?.Interet_porteur_projet
+                      ?.Impact_economique_exploitant?.marge_euro
+                  : Interet_porteur_projet?.Impact_economique_exploitant
+                      ?.marge_euro
+              "
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              class="form-control"
+              [(ngModel)]="
+                Interet_porteur_projet.Impact_economique_exploitant.marge_totale
+              "
+              name="Interet_porteur_projet.Impact_economique_exploitant.marge_totale"
+              (change)="somme_privVente3()"
+              [value]="sommeDeMarge3()"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              class="form-control"
+              [(ngModel)]="
+                Interet_porteur_projet.Impact_economique_exploitant
+                  .Prix_vente_Concep
+              "
+              name="Interet_porteur_projet.Impact_economique_exploitant.Prix_vente_Concep"
+              [value]="somme_privVente3()"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>1.4. Bilan agronomique des sols</td>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              class="form-control"
+              [(ngModel)]="
+                Interet_porteur_projet.Bilan_agronomique_sols.SS_Traitance
+              "
+              name="Interet_porteur_projet.Bilan_agronomique_sols.SS_Traitance"
+              (change)="sommeDeMarge4()"
+              (change)="somme_privVente4()"
+            />
+          </td>
+          <td style="background-color: #2d7574; border-color: #2d7574">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="
+                  Interet_porteur_projet.Bilan_agronomique_sols.marge_percent
+                "
+                name="Interet_porteur_projet.Bilan_agronomique_sols.marge_percent"
+                (change)="sommeDeMarge4()"
+                (change)="somme_privVente4()"
+              />
+              <span class="percent input-group-addon">%</span>
+            </div>
+          </td>
+          <td style="background-color: #2d7574; border-color: #2d7574">
+            <input
+              type="text"
+              class="form-control"
+              class="form-control"
+              [(ngModel)]="
+                Interet_porteur_projet.Bilan_agronomique_sols.marge_euro
+              "
+              name="Interet_porteur_projet.Bilan_agronomique_sols.marge_euro"
+              (change)="sommeDeMarge4()"
+              (change)="somme_privVente4()"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              class="form-control"
+              [(ngModel)]="
+                Interet_porteur_projet.Bilan_agronomique_sols.marge_totale
+              "
+              name="Interet_porteur_projet.Bilan_agronomique_sols.marge_totale"
+              (change)="somme_privVente4()"
+              [value]="sommeDeMarge4()"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              class="form-control"
+              [(ngModel)]="
+                Interet_porteur_projet.Bilan_agronomique_sols.Prix_vente_Concep
+              "
+              name="Interet_porteur_projet.Bilan_agronomique_sols.Prix_vente_Concep"
+              [value]="somme_privVente4()"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>1.5. Après Avis favorable : Création SPV</td>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="
+                Interet_porteur_projet.Apres_Avis_favorable_Creation_SPV
+                  .SS_Traitance
+              "
+              name="Interet_porteur_projet.Apres_Avis_favorable_Creation_SPV.SS_Traitance"
+              (change)="sommeDeMarge5()"
+              (change)="somme_privVente5()"
+            />
+          </td>
+          <td style="background-color: #2d7574; border-color: #2d7574">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="
+                  Interet_porteur_projet.Apres_Avis_favorable_Creation_SPV
+                    .marge_percent
+                "
+                name="Interet_porteur_projet.Apres_Avis_favorable_Creation_SPV.marge_percent"
+                (change)="sommeDeMarge5()"
+                (change)="somme_privVente5()"
+              />
+              <span class="percent input-group-addon">%</span>
+            </div>
+          </td>
+          <td style="background-color: #2d7574; border-color: #2d7574">
+            <input
+              type="text"
+              class="form-control"
+              class="form-control"
+              [(ngModel)]="
+                Interet_porteur_projet.Apres_Avis_favorable_Creation_SPV
+                  .marge_euro
+              "
+              name="Interet_porteur_projet.Apres_Avis_favorable_Creation_SPV.marge_euro"
+              (change)="sommeDeMarge5()"
+              (change)="somme_privVente5()"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              class="form-control"
+              [(ngModel)]="
+                Interet_porteur_projet.Apres_Avis_favorable_Creation_SPV
+                  .marge_totale
+              "
+              name="Interet_porteur_projet.Apres_Avis_favorable_Creation_SPV.marge_totale"
+              (change)="somme_privVente5()"
+              [value]="sommeDeMarge5()"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              class="form-control"
+              [(ngModel)]="
+                Interet_porteur_projet.Apres_Avis_favorable_Creation_SPV
+                  .Prix_vente_Concep
+              "
+              name="Interet_porteur_projet.Apres_Avis_favorable_Creation_SPV.Prix_vente_Concep"
+              [value]="somme_privVente5()"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td style="background-color: #2d7574; border-color: #2d7574"></td>
+          <td style="background-color: #2d7574; border-color: #2d7574"></td>
+          <td style="background-color: #2d7574; border-color: #2d7574"></td>
+          <td style="background-color: #2d7574; border-color: #2d7574"></td>
+          <td style="background-color: #2d7574; border-color: #2d7574"></td>
+          <td style="background-color: #2d7574; border-color: #2d7574"></td>
+        </tr>
+
+        <!-- D3D3D3 -->
+      </tbody>
+
+      <tfoot>
+        <tr style="border: 4px solid #2d7574; padding-top: 20px">
+          <th
+            scope="row"
+            style="background-color: #2d7574; border-color: #2d7574"
+          >
+            <B style="color: white">Sous-Total Phase Conception 1</B>
+          </th>
+          <td style="background-color: #2d7574; border-color: #2d7574">
+            <input
+              style="text-align: right; font-size: 15px; font-weight: bold"
+              class="form-control"
+              type="text"
+              [(ngModel)]="Interet_porteur_projet.Sous_Total_Conception"
+              name="Interet_porteur_projet.Sous_Total_Conception"
+              [value]="sommeSoutraitanceTotaux()"
+            />
+          </td>
+          <td style="background-color: #2d7574; border-color: #2d7574"></td>
+          <td style="background-color: #2d7574; border-color: #2d7574"></td>
+
+          <td style="background-color: #2d7574; border-color: #2d7574">
+            <input
+              style="text-align: right; font-size: 15px; font-weight: bold"
+              type="text"
+              [(ngModel)]="Interet_porteur_projet.Marge_totaux"
+              name="Interet_porteur_projet.Marge_totaux"
+              class="form-control"
+              [value]="someMargeTotaux()"
+            />
+          </td>
+          <td style="background-color: #2d7574; border-color: #2d7574">
+            <input
+              type="text"
+              style="text-align: right; font-size: 15px; font-weight: bold"
+              [(ngModel)]="Interet_porteur_projet.Sous_Total_Prix_vente_Concep"
+              name="Interet_porteur_projet.Sous_Total_Prix_vente_Concep"
+              [value]="somePrixDeVneteTotaux()"
+              class="form-control"
+            />
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </form>
+  <button
+    (click)="sendInteret(f.value)"
+    class="st"
+    style="background-color: #00ae81"
+  >
+    ENREGISTRER
+  </button>
+</div>

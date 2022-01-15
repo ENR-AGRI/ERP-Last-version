@@ -1,0 +1,118 @@
+<div class="container">
+  <div class="row message-wrapper rounded shadow mb-20">
+    <div class="col-md-4 message-sideleft">
+      <div class="panel list-scroll">
+        <div class="left-panel-heading">
+          <div class="pull-left d-flex justify-content-between p-3">
+            <button class="btn-msg active">Boite reception</button>
+            <button class="btn-msg">Message envoyé</button>
+          </div>
+
+          <div class="clearfix"></div>
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body no-padding">
+          <div class="card h-100 p-3">
+            <div
+              class="list-group no-margin list-message"
+              *ngFor="let notif of notifications; let i = index"
+            >
+              <a
+                type="button"
+                class="list-group-item"
+                [ngClass]="notif.read ? 'read' : 'unread'"
+                (click)="openMsg(notif, i)"
+              >
+                <h4 class="list-group-item-heading">
+                  {{ notif.senderName }} <br />
+
+                  <small>{{ TimeFromNow(notif.created) }}</small>
+                </h4>
+                <p class="list-group-item-text">
+                  Matricule : {{ notif.matriculeClient }} <br />
+                  <strong>{{ notif.message }}</strong>
+                </p>
+                <span class="label" style="float: right">
+                  <i class="fa fa-share" (click)="repondre(notif, i)"></i>
+                </span>
+                <div class="clearfix"></div>
+              </a>
+            </div>
+            <!-- /.list-group -->
+          </div>
+        </div>
+        <!-- /.panel-body -->
+      </div>
+      <!-- /.panel -->
+    </div>
+    <!-- /.message-sideleft -->
+    <div class="col-md-8 message-sideright">
+      <div class="panel">
+        <div class="panel-heading">
+          <div class="media">
+            <button
+              class="btn rounded"
+              style="float: right; background-color: #00ae81; color: white"
+            >
+              <i class="fa fa-eye"></i> Voir Details
+            </button>
+            <a class="pull-left" href="#">
+              <img
+                src="assets/images/c1.jpg"
+                alt="client"
+                width="50"
+                height="50"
+                class="rounded-circle"
+              />
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading">
+                {{ selectedUserDetails.senderName }} <br />
+                <small>{{ selectedUserDetails.matriculeClient }}</small>
+              </h4>
+              <small>{{ TimeFromNow(selectedUserDetails.created) }}</small>
+            </div>
+          </div>
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+          <p class="lead">
+            {{ selectedUserDetails.message }}
+          </p>
+          <hr />
+        </div>
+        <!-- /.panel-body -->
+      </div>
+      <!-- /.panel -->
+
+      <div class="message container">
+        <!-- Message Start -->
+
+        <form
+          [formGroup]="formSendMessageToClient"
+          (ngSubmit)="sendMessageToClient()"
+        >
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label"
+              >Votre Message</label
+            >
+            <textarea
+              formControlName="message"
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+            >
+            </textarea>
+          </div>
+          <div>
+            <button type="submit" class="btn-send">
+              <span class="btn-txt">Envoyer</span
+              ><span><i class="far fa-paper-plane"></i></span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- /.message-sideright -->
+  </div>
+</div>

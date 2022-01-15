@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+
+.content {
+  background-color: #2d7574;
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+
+::-webkit-input-placeholder {
+  font-size: 0.875rem;
+}
+
+.form-check label {
+  font-size: 0.75rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+.form-check a {
+  font-size: 0.75rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup button {
+  background-color: #00ae81;
+  padding: 8px 15px 8px 15px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #ffffff;
+  border-radius: 5px;
+  border: none;
+}
+
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  font-size: 0.875rem;
+  padding-top: 20px;
+}
+
+.nav img {
+  width: 100px;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.signin {
+  font-size: 0.75rem;
+  margin-top: 30px;
+  margin-bottom: 100px;
+  font-weight: 600;
+  text-align: center;
+  color: #ffffff;
+}
+
+.signin a {
+  font-size: 0.75rem;
+  margin-top: 10px;
+  font-weight: 600;
+  text-align: center;
+  color: #ffffff;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+.uneditable-input:focus {
+  border-color: #ffffff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,
+    0 0 8px rgba(255, 255, 255, 0.836);
+  outline: 0 none;
+}
+.alert {
+  margin-bottom: 1px;
+  height: 30px;
+  line-height:30px;
+  padding:0px 15px;
+  }

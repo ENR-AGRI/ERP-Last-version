@@ -1,0 +1,80 @@
+<header class="py-3 mb-3 border-bottom d-none d-md-block d-lg-block d-xl-block">
+  <div class="
+      container-fluid
+      d-grid
+      gap-3
+      align-items-center
+      d-flex
+      justify-content-end
+    " style="grid-template-columns: 1fr 2fr">
+    <div class="d-flex align-items-center">
+      <div>
+        <a href="#">
+          <i class="fi fi-rr-envelope me-4"></i></a>
+      </div>
+      <div class="nav-item dropdown">
+        <!-- <a href="#"><i class="fi fi-rr-bell me-4"></i></a> -->
+        <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">
+          <i class="fi fi-rr-bell me-4 position-relative">
+            <span class="position-absolute
+
+            translate-middle badge rounded-pill bg-danger" *ngIf="count.length>0">
+
+            {{count.length}}
+
+
+
+            </span>
+          </i>
+         </a>
+        <div >
+<ul class="dropdown-menu list-group">
+          <li class="notif-drop " *ngFor="let notif of notifications" >
+
+            <a href="#">
+              <div class="d-flex align-items-start mb-1">
+
+                <img src="https://github.com/mdo.png" alt="mdo" width="40px" height="40px" class="rounded-circle" />
+
+                <div class="notif-info d-block ms-2">
+                  <p>
+                <b>{{notif.senderName}}</b><br />
+                   {{notif.message}}
+                  </p>
+                  <div class="mt-0" style="font-size: 0.75rem; color: #00ae81;">{{TimeFromNow(notif.created)}}</div>
+                </div>
+
+              </div>
+            </a>
+            <hr/>
+          </li>
+
+        </ul>
+        </div>
+      </div>
+
+      <div class="flex-shrink-0 dropdown">
+        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle" />
+          <span style="color: black;">  {{current_User?.nom}} {{current_User?.prenom}}</span>
+        </a>
+
+        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+          <li>
+            <a class="dropdown-item" href="#">Nouveau Projet</a>
+          </li>
+          <li><a class="dropdown-item" href="#">Parametres </a></li>
+          <li><a class="dropdown-item" routerLink="/profile">Profil</a></li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li>
+            <a class="dropdown-item" (click)="logout()" title="se deconnecter">se deconnecter</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</header>
