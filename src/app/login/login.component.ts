@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
     // }
   }
   login() {
-    console.log("logiiiin");
     if (this.formLogin.valid)
       this.authSrv.login(this.formLogin.value).subscribe(
         (data: any) => {

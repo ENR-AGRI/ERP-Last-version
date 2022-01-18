@@ -1,8 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { BienvenuComponent } from "./bienvenu/bienvenu.component";
-import { AffichageComponent } from "./capex/affichage/affichage.component";
-import { CapexComponent } from "./capex/capex.component";
+
 import { AddClientComponent } from "./components/gestionClient/add-client/add-client.component";
 import { FicheClientComponent } from "./components/gestionClient/fiche-client/fiche-client.component";
 import { ListeClientComponent } from "./components/gestionClient/liste-client/liste-client.component";
@@ -38,17 +37,14 @@ import { MapComponent } from "./map/map.component";
 import { ClientcommercialComponent } from "./message/clientcommercial/clientcommercial.component";
 import { CommercialClientComponent } from "./message/commercial-client/commercial-client.component";
 
-import { NewTestComponent } from "./new-test/new-test.component";
-import { OpexComponent } from "./opex/opex.component";
-import { ProfileClientComponent } from "./profile-client/profile-client.component";
 import { RegisterComponent } from "./register/register.component";
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
-import { ScenarioComponent } from "./scenario/scenario.component";
+
 import { AdminGuard } from "./services/guard/admin.service";
 import { AuthGuard } from "./services/guard/auth.service";
 import { ClientGuard } from "./services/guard/client.guard";
 import { CommercialGuard } from "./services/guard/commercial.guard";
-import { TakwaComponent } from "./takwa/takwa.component";
+
 import { VerifMailComponent } from "./verif-mail/verif-mail.component";
 
 const routes: Routes = [
@@ -59,11 +55,7 @@ const routes: Routes = [
 
     children: [
       { path: "", component: BienvenuComponent, canActivate: [AuthGuard] },
-      {
-        path: "profile",
-        component: ProfileClientComponent,
-        canActivate: [AuthGuard],
-      },
+
       { path: "home", component: HomeComponent, canActivate: [AuthGuard] },
       {
         path: "add-staff",
@@ -188,25 +180,16 @@ const routes: Routes = [
       },
       // { path: "capex", component: CapexComponent },
       // { path: "opex", component: OpexComponent },
-      {
-        path: "affichage",
-        component: AffichageComponent,
-        canActivate: [AuthGuard, AdminGuard],
-      },
-      {
-        path: "scenario",
-        component: ScenarioComponent,
-        canActivate: [AuthGuard, AdminGuard],
-      },
+
       {
         path: "projet",
         component: FicheProjetComponent,
         canActivate: [AuthGuard],
       },
-      { path: "test", component: NewTestComponent },
+
       { path: "liste-projets", component: ListeProjetsComponent },
       { path: "liste-Fournisseurs", component: ListeFournisseursComponent },
-      { path: "profile", component: ProfileClientComponent },
+
       { path: "map", component: MapComponent },
 
       {
@@ -232,7 +215,6 @@ const routes: Routes = [
   { path: "forgotPassword", component: ForgotPasswordComponent },
   { path: "reset-password", component: ResetPasswordComponent },
   { path: "verify-email/:tokenForMailVerif", component: VerifMailComponent },
-  { path: "takwa", component: TakwaComponent },
 ];
 //,{useHash:true}
 @NgModule({

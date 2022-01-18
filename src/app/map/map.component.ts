@@ -2,7 +2,6 @@ import { AfterViewInit, Component, OnInit } from "@angular/core";
 import { GeoJsonTypes } from "geojson";
 import { latLng, LeafletMouseEvent, tileLayer } from "leaflet";
 import * as L from "leaflet";
-import * as data from "../bienvenu/data.json";
 
 @Component({
   selector: "app-map",

@@ -39,10 +39,6 @@ export class AddClientComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log("hiiiiii");
-
-    console.log("etats",this.etats);
-
 
     this.formClient = this.fb.group({
       prenom: [

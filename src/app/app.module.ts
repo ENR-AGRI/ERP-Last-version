@@ -41,25 +41,24 @@ import { Cogeneration560Component } from "./construction/cogeneration560/cogener
 import { Cogeneration760Component } from "./construction/cogeneration760/cogeneration760.component";
 import { Cogeneration960Component } from "./construction/cogeneration960/cogeneration960.component";
 import { Cogeneration1120Component } from "./construction/cogeneration1120/cogeneration1120.component";
-import { CapexComponent } from "./capex/capex.component";
-import { OpexComponent } from "./opex/opex.component";
+
 import { ChartsModule } from "ng2-charts";
-import { AffichageComponent } from "./capex/affichage/affichage.component";
+
 import { NavFicheComponent } from "./nav-fiche/nav-fiche.component";
-import { ScenarioComponent } from "./scenario/scenario.component";
+
 import { FicheProjetComponent } from "./fiche-projet/fiche-projet.component";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
-import { NewTestComponent } from "./new-test/new-test.component";
+
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { VerifMailComponent } from "./verif-mail/verif-mail.component";
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
 import { ListeProjetsComponent } from "./liste-projets/liste-projets.component";
 import { ListeFournisseursComponent } from "./liste-fournisseurs/liste-fournisseurs.component";
-import { ProfileClientComponent } from "./profile-client/profile-client.component";
+
 import { BienvenuComponent } from "./bienvenu/bienvenu.component";
 import { MessageComponent } from "./message/message.component";
-import { TakwaComponent } from "./takwa/takwa.component";
+
 import { ClientcommercialComponent } from "./message/clientcommercial/clientcommercial.component";
 import { CommercialClientComponent } from "./message/commercial-client/commercial-client.component";
 import { MapComponent } from "./map/map.component";
@@ -100,24 +99,22 @@ import { NgCircleProgressModule } from "ng-circle-progress";
     Cogeneration760Component,
     Cogeneration960Component,
     Cogeneration1120Component,
-    CapexComponent,
-    OpexComponent,
-    AffichageComponent,
+
     NavFicheComponent,
-    ScenarioComponent,
+
     FicheProjetComponent,
     LoginComponent,
     RegisterComponent,
-    NewTestComponent,
+
     ForgotPasswordComponent,
     VerifMailComponent,
     ResetPasswordComponent,
     ListeProjetsComponent,
     ListeFournisseursComponent,
-    ProfileClientComponent,
+
     BienvenuComponent,
     MessageComponent,
-    TakwaComponent,
+
     ClientcommercialComponent,
     CommercialClientComponent,
     MapComponent,
