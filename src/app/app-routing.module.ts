@@ -3,7 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { BienvenuComponent } from "./bienvenu/bienvenu.component";
 
 import { AddClientComponent } from "./components/gestionClient/add-client/add-client.component";
-import { FicheClientComponent } from "./components/gestionClient/fiche-client/fiche-client.component";
+
 import { ListeClientComponent } from "./components/gestionClient/liste-client/liste-client.component";
 import { AddStaffComponent } from "./components/gestionStaff/add-staff/add-staff.component";
 import { ListaStaffComponent } from "./components/gestionStaff/lista-staff/lista-staff.component";
@@ -77,11 +77,7 @@ const routes: Routes = [
         component: ListeClientComponent,
         canActivate: [AuthGuard, CommercialGuard],
       },
-      {
-        path: "fiche",
-        component: FicheClientComponent,
-        canActivate: [AuthGuard],
-      },
+
       {
         path: "Conception-data",
         component: DonnesConstructionComponent,

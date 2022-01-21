@@ -1,382 +1,149 @@
 <h3 style="color: #00AE81;">Liste Clients</h3>
-
-
-
-
-
-
-<!-- travail takwa with controler des champs
-   <div class="row">
-  <div class="col-md-12">
-    <div class="main-card mb-3 card">
-      <div class="card-header color">
-        <div class="btn-actions-pane-right">
-          <div role="group" class="btn-group-sm btn-group">
-
-            <button  style="font-family: open Sans;"
-              [routerLink]="['/addClient']">Ajouter Nouveau</button>
-
-
-
-            <input class="form-control" type="text" #query (keyup)="filterClient(query.value)" style="margin-left: 200px;">
+<div class="container-xl">
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-5">
+            <h2>Liste <b>clients</b></h2>
+          </div>
+          <div class="col-sm-7">
+            <a type="button" class="btn btn-info add-new" (click)="addRowToTable()">
+              <i class="material-icons">&#xE147;</i>
+              Ajouter un Client
+            </a>
+            <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Exporter en
+                Excel</span></a>
           </div>
         </div>
       </div>
-      <div class="table table-bordered table-striped datatable">
-        <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+      <form #addClientForm="ngForm">
+        <table class="table table-striped table-hover">
+
           <thead>
             <tr>
-              <th class="text-center">matricule</th>
-              <th>Prénom</th>
-              <th>Nom</th>
-              <th class="text-center">Pays</th>
-              <th class="text-center">Etat</th>
-              <th class="text-center">Email</th>
-              <th class="text-center">Tel</th>
-              <th class="text-center">Fonction</th>
-              <th class="text-center">Actions</th>
+              <th>Matricule</th>
+              <th>Nom </th>
+              <th>Prenom </th>
+              <th>Date De Creation</th>
+              <th>Email</th>
+              <th>Telephone</th>
+              <th span="3">Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let c of clientFilter">
-              <td class="text-center text-muted">#{{c?.matricule}}</td>
-              <td>
-                <div class="widget-content p-0">
-                  <div class="widget-content-wrapper">
 
-                    <div class="widget-content-left flex2">
-                      <div class="widget-heading">{{c?.prenom}}</div>
-                      <div class="widget-subheading opacity-7"></div>
-                    </div>
-                  </div>
-                </div>
+            <tr *ngIf="showTRwhenADD">
+
+
+              <td></td>
+              <td>
+                <input [(ngModel)]="nom" name="nom" type="text" style="width: 110px;" class="form-control">
               </td>
               <td>
-                <div class="widget-content p-0">
-                  <div class="widget-content-wrapper">
+                <input [(ngModel)]="prenom" name="prenom" type="text" style="width: 110px;" class="form-control">
+              </td>
+              <td></td>
 
-                    <div class="widget-content-left flex2">
-                      <div class="widget-heading">{{c?.nom}}</div>
-                      <div class="widget-subheading opacity-7"></div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td class="text-center">{{c?.pays}}</td>
-              <td class="text-center">
-                <div class="badge badge-warning">{{c?.etat.nom}}</div>
-              </td>
+              <td><input [(ngModel)]="email" name="email" type="text" style="width: 110px;" class="form-control"></td>
+              <td><input [(ngModel)]="tel" name="tel" type="text" style="width: 110px;" class="form-control"></td>
               <td>
-                <div class="widget-content p-0">
-                  <div class="widget-content-wrapper">
-
-                    <div class="widget-content-left flex2">
-                      <div class="widget-heading">{{c?.email}}</div>
-                      <div class="widget-subheading opacity-7"></div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="widget-content p-0">
-                  <div class="widget-content-wrapper">
-
-                    <div class="widget-content-left flex2">
-                      <div class="widget-heading">{{c?.tel}}</div>
-                      <div class="widget-subheading opacity-7"></div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-
-              <td>
-                <div class="widget-content p-0">
-                  <div class="widget-content-wrapper">
-
-                    <div class="widget-content-left flex2">
-                      <div class="widget-heading">{{c?.fonction}}</div>
-                      <div class="widget-subheading opacity-7"></div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <a href="#" class="btn btn-default btn-sm btn-icon icon-left">
-                  <i class="entypo-pencil"></i>
-                  Edit
+                <a type="submit" class="add" title="Add" data-toggle="tooltip" (click)="addClient(addClientForm)">
+                  <i class="material-icons" style="color:#00ae81;">&#xE03B;</i>
+                </a>
+                <a type="button" (click)="_deleteRow()" class="delete" title="Delete" data-toggle="tooltip">
+                  <i class="material-icons">&#xE5C9;</i>
                 </a>
 
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                  <i class="entypo-cancel"></i>
-                  Delete
+              </td>
+
+            </tr>
+
+            <tr *ngFor="let c of clients;let i=index">
+
+
+
+              <ng-container *ngIf="showEdit!=i">
+                <td style="font-weight: bold;">{{c.rep}}</td>
+                <td><a> {{c.nom}}</a></td>
+                <td><a> {{c.prenom}}</a></td>
+                <td>{{c.createdOn | date:'short'}}</td>
+                <td>{{c.email}}</td>
+                <td>{{c.tel}}</td>
+              </ng-container>
+
+              <ng-container *ngIf="showEdit==i">
+                <td>{{c.matricule}} </td>
+                <td>
+
+                  <input [(ngModel)]="nom" type="text" name="nom" class="form-control" value="{{c.nom}}">
+
+                </td>
+
+                <td>
+
+                  <input [(ngModel)]="prenom" type="text" class="form-control" value="{{c.prenom}}" name="prenom">
+
+                </td>
+
+                <td>
+                  {{c.createdOn | date:'short'}}
+                </td>
+
+                <td>
+                  <input [(ngModel)]="email" type="text" class="form-control" value="{{c.email}}" name="email">
+                </td>
+                <td>
+                  <input [(ngModel)]="tel" type="text" class="form-control" value="{{c.tel}}" name="tel">
+                </td>
+
+              </ng-container>
+
+
+
+              <td>
+                <a type="submit" (click)="editClient(c,i)" class="add" title="MODIFIER" data-toggle="tooltip"
+                  *ngIf="showEdit==i">
+                  <i class="material-icons" style="color:#00ae81;">&#xE03B;</i>
+                </a>
+                <a type="button" *ngIf="showEdit!=i" (click)="showEditInput(c,i)" class="settings" title="Parametre"
+                  data-toggle="tooltip">
+                  <i class="material-icons">&#xE8B8;</i></a>
+
+                <a type="button" *ngIf="showEdit!=i" (click)="delete(c)" class="delete" title="Delete"
+                  data-toggle="tooltip">
+                  <i class="material-icons">&#xE5C9;</i>
                 </a>
 
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                  <i class="entypo-info"></i>
-                  Profile
+                <a *ngIf="showEdit==i" type="button" (click)="deleteEditRow(i)" class="delete" title="FERMER"
+                  data-toggle="tooltip">
+                  <i class="material-icons">&#xE5C9;</i>
+                </a>
+
+
+                <a type="button" (click)="sendMsgToClient(c._id)" style="color: #00ae81;" class="delete"
+                  title="envoyer message" data-toggle="tooltip">
+                  <i class="fas fa-envelope"></i>
                 </a>
               </td>
             </tr>
 
           </tbody>
+
         </table>
-      </div>
-      <div class="d-block text-center card-footer">
-        <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"> Annuler
-          <i class="pe-7s-trash btn-icon-wrapper"> </i>
-        </button>
-        <button class="mr-2 btn-wide btn btn-success">Save</button>
+      </form>
+      <div class="clearfix">
+        <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+        <ul class="pagination">
+          <li class="page-item disabled"><a href="#">précedent</a></li>
+          <li class="page-item"><a href="#" class="page-link">1</a></li>
+          <li class="page-item"><a href="#" class="page-link">2</a></li>
+          <li class="page-item active"><a href="#" class="page-link">3</a></li>
+          <li class="page-item"><a href="#" class="page-link">4</a></li>
+          <li class="page-item"><a href="#" class="page-link">5</a></li>
+          <li class="page-item"><a href="#" class="page-link">Suivant</a></li>
+        </ul>
       </div>
     </div>
-  </div>
-</div> -->
-
- <!-- ************************************** 17//11/2021 FROM chadi***********************************************************
-  <div class="container">
-
-    <div class="staff-tab mb-3">
-      <div class="buttons mb-2">
-        <button class="add-btn">
-          <span class="btn-txt">Ajouter</span>
-          <span class="btn-icon"></span>
-        </button>
-        <button class="edt-btn">
-          <span class="btn-txt">Modifier</span>
-          <span class="btn-icon"><i class="fi fi-rr-pencil"></i></span>
-        </button>
-      </div>
-      <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Ref Client</th>
-
-              <th scope="col">Prénom</th>
-              <th scope="col">Nom</th>
-              <th scope="col">Fonction</th>
-              <th scope="col">Activité</th>
-              <th scope="col">Email</th>
-              <th scope="col">Tel</th>
-              <th scope="col">Rue</th>
-              <th scope="col">CP</th>
-              <th scope="col">Ville</th>
-              <th scope="col">Pays</th>
-              <th scope="col">REP</th>
-              <th scope="col">Notes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let c of clientFilter">
-              <th scope="row">{{c?.matricule}}</th>
-
-              <td>{{c?.Src_Client}}</td>
-              <td>{{c?.Src_Client}}</td>
-              <td>{{c?.Src_Client}}</td>
-              <td>{{c?.Src_Client}}</td>
-              <td>{{c?.Src_Client}}</td>
-              <td>{{c?.Src_Client}}</td>
-              <td>{{c?.Src_Client}}</td>
-              <td>{{c?.Src_Client}}</td>
-              <td>{{c?.Src_Client}}</td>
-              <td>{{c?.Src_Client}}</td>
-              <td>{{c?.Src_Client}}</td>
-              <td>{{c?.Src_Client}}</td>
-            </tr>
-
-            <tr>
-              <th scope="row">3</th>
-              <td>Text</td>
-              <td>Text</td>
-              <td>Text</td>
-              <td>Text</td>
-              <td>Text</td>
-              <td>Text</td>
-              <td>Text</td>
-              <td>Text</td>
-              <td>Text</td>
-              <td>Text</td>
-              <td>Text</td>
-              <td>Text</td>
-              <td>Text</td>
-              <td>Text</td>
-              <td>Text</td>
-              <td>Text</td>
-              <td>Text</td>
-              <td>Text</td>
-              <td>Text</td>
-              <td>Text</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
--->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="container-xl">
-  <div class="table-responsive">
-      <div class="table-wrapper">
-          <div class="table-title">
-              <div class="row">
-                  <div class="col-sm-5">
-                      <h2>Liste <b>clients</b></h2>
-                  </div>
-                  <div class="col-sm-7">
-                    <a type="button" class="btn btn-info add-new" (click)="addRowToTable()">
-                      <i class="material-icons"  >&#xE147;</i>
-                       Ajouter un Client
-                    </a>
-                      <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Exporter en Excel</span></a>
-                  </div>
-              </div>
-          </div>
-          <form  #addClientForm="ngForm"  >
-          <table class="table table-striped table-hover">
-
-              <thead>
-                  <tr>
-                      <th>Matricule</th>
-                      <th>Nom </th>
-                      <th>Prenom </th>
-                      <th>Date De Creation</th>
-                      <th>Email</th>
-                      <th>Telephone</th>
-                      <th span="3">Action</th>
-                  </tr>
-              </thead>
-              <tbody>
-
-                <tr *ngIf="showTRwhenADD">
-
-
-                  <td></td>
-                  <td>
-                   <input  [(ngModel)]="nom" name="nom" type="text" style="width: 110px;"class="form-control">
-                  </td>
-                  <td>
-                    <input [(ngModel)]="prenom" name="prenom" type="text"style="width: 110px;"class="form-control">
-                  </td>
-                  <td></td>
-
-                  <td><input [(ngModel)]="email" name="email" type="text"style="width: 110px;"class="form-control"></td>
-                  <td><input [(ngModel)]="tel"  name="tel" type="text"style="width: 110px;"class="form-control"></td>
-                  <td>
-                    <a type="submit"  class="add" title="Add" data-toggle="tooltip"
-                    (click)="addClient(addClientForm)">
-                      <i class="material-icons" style="color:#00ae81;">&#xE03B;</i>
-                    </a>
-                      <a type="button" (click)="_deleteRow()" class="delete" title="Delete" data-toggle="tooltip">
-                        <i class="material-icons">&#xE5C9;</i>
-                      </a>
-
-                  </td>
-
-              </tr>
-
-                  <tr *ngFor="let c of clients;let i=index">
-
-
-
-                    <ng-container *ngIf="showEdit!=i">
-                      <td style="font-weight: bold;">{{c.rep}}</td>
-                      <td><a> {{c.nom}}</a></td>
-                      <td><a> {{c.prenom}}</a></td>
-                      <td>{{c.createdOn | date:'short'}}</td>
-                      <td>{{c.email}}</td>
-                      <td>{{c.tel}}</td>
-                    </ng-container>
-
-                    <ng-container *ngIf="showEdit==i">
-                      <td>{{c.matricule}} </td>
-                      <td>
-
-                      <input  [(ngModel)]="nom" type="text" name="nom"
-                     class="form-control" value="{{c.nom}}">
-
-                      </td>
-
-                      <td>
-
-                      <input  [(ngModel)]="prenom" type="text"
-                     class="form-control" value="{{c.prenom}}" name="prenom">
-
-                      </td>
-
-                      <td>
-                        {{c.createdOn | date:'short'}}
-                      </td>
-
-                      <td>
-                      <input  [(ngModel)]="email" type="text"
-                     class="form-control" value="{{c.email}}" name="email"></td>
-                      <td>
-                      <input  [(ngModel)]="tel" type="text"
-                     class="form-control" value="{{c.tel}}" name="tel"></td>
-
-                    </ng-container>
-
-
-
-                      <td>
-                        <a type="submit"  (click)="editClient(c,i)" class="add" title="MODIFIER" data-toggle="tooltip"
-                        *ngIf="showEdit==i">
-                          <i class="material-icons" style="color:#00ae81;">&#xE03B;</i>
-                        </a>
-                          <a type="button" *ngIf="showEdit!=i" (click)="showEditInput(c,i)"
-                          class="settings" title="Parametre" data-toggle="tooltip">
-                          <i class="material-icons">&#xE8B8;</i></a>
-
-                          <a type="button" *ngIf="showEdit!=i" (click)="delete(c)" class="delete"
-                          title="Delete" data-toggle="tooltip">
-                            <i class="material-icons">&#xE5C9;</i>
-                          </a>
-
-                          <a *ngIf="showEdit==i" type="button" (click)="deleteEditRow(i)"
-                           class="delete" title="FERMER" data-toggle="tooltip">
-                            <i class="material-icons">&#xE5C9;</i>
-                          </a>
-
-
-                          <a  type="button" (click)="sendMsgToClient(c._id)" style="color: #00ae81;"
-                          class="delete" title="envoyer message" data-toggle="tooltip">
-                          <i class="fas fa-envelope" ></i>
-                         </a>
-                      </td>
-                  </tr>
-
-              </tbody>
-
-          </table>
-        </form>
-          <div class="clearfix">
-              <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-              <ul class="pagination">
-                  <li class="page-item disabled"><a href="#">précedent</a></li>
-                  <li class="page-item"><a href="#" class="page-link">1</a></li>
-                  <li class="page-item"><a href="#" class="page-link">2</a></li>
-                  <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                  <li class="page-item"><a href="#" class="page-link">4</a></li>
-                  <li class="page-item"><a href="#" class="page-link">5</a></li>
-                  <li class="page-item"><a href="#" class="page-link">Suivant</a></li>
-              </ul>
-          </div>
-      </div>
   </div>
 </div>

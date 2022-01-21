@@ -47,34 +47,26 @@ export class AuthService {
     console.log("user from user", user);
     return this.http.post(this.config.baseURL + "/register", user);
   }
-  resetPassword(formBody){
-
-    console.log("reset pwd form from service",formBody);
-
-
+  resetPassword(formBody) {
+    console.log("reset pwd form from service", formBody);
 
     return this.http.post(this.config.baseURL + "/resetPassword", formBody);
-
   }
-  profile(){
-    return this.http.get(this.config.baseURL + "/profile" );
+  profile() {
+    return this.http.get(this.config.baseURL + "/profile");
   }
 
-  forgotPassword(email){
-
+  forgotPassword(email) {
     return this.http.post(this.config.baseURL + "/forgotPassword", email);
-
   }
-  verifyEmailAccount(tokenForMailVerif){
-
-    return this.http.get(this.config.baseURL + "/verify-email/" + tokenForMailVerif);
-
+  verifyEmailAccount(tokenForMailVerif) {
+    return this.http.get(
+      this.config.baseURL + "/verify-email/" + tokenForMailVerif
+    );
   }
   updateProfile(user: any) {
-    console.log("user",user);
+    console.log("user", user);
     return this.http.post(this.config.baseURL + "/updateProfile", user);
-
-
   }
 
   //showing or hiding element
@@ -130,35 +122,37 @@ export class AuthService {
     return this.http.post(this.config.baseURL + "/staffs", staff);
   }
 
-
   //send message from contact
-  sendMessage(msg){
-    console.log("msg",msg);
+  sendMessage(msg) {
+    console.log("msg", msg);
 
     return this.http.post(this.config.baseURL + "/message", msg);
   }
 
-
-
   //// send message from client to rep
-  messageToRepOrToClient(body){
-   console.log("body",body);
+  messageToRepOrToClient(body) {
+    console.log("body", body);
 
-
-    return this.http.post(this.config.baseURL + "/messageToRepOrToClient", body);
+    return this.http.post(
+      this.config.baseURL + "/messageToRepOrToClient",
+      body
+    );
   }
 
-  MarkAllNotifications(id, deleteValue?){
-    return this.http.post(this.config.baseURL + "/MarkAllNotifications/"+id, {
+  MarkAllNotifications(id, deleteValue?) {
+    return this.http.post(this.config.baseURL + "/MarkAllNotifications/" + id, {
       id,
-      deleteValue
+      deleteValue,
     });
   }
 
-  MarkNotification(id, deleteValue?){
-    return this.http.post(this.config.baseURL + "/MarkOrDeleteNotification/"+id, {
-      id,
-      deleteValue
-    });
+  MarkNotification(id, deleteValue?) {
+    return this.http.post(
+      this.config.baseURL + "/MarkOrDeleteNotification/" + id,
+      {
+        id,
+        deleteValue,
+      }
+    );
   }
 }

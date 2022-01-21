@@ -10,11 +10,13 @@ import { AuthService } from "../services/auth.service";
   styleUrls: ["./bienvenu.component.css"],
 })
 export class BienvenuComponent implements OnInit {
+  //declaration des variables
   messageForm: FormGroup;
   current_User;
   msgError = "";
   msgSuccess = "";
   submitted = false;
+  //constructeur ou on injecte les services
   constructor(
     private fb: FormBuilder,
     private authSrv: AuthService,
@@ -22,19 +24,20 @@ export class BienvenuComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    //initialisation de formulaire
     this.messageForm = this.fb.group({
       subject: ["", [Validators.required, Validators.maxLength(50)]],
       message: ["", [Validators.required, Validators.maxLength(1000)]],
     });
+    //appelle de la methode profile dans le services authSrv pour obtenir qui le  user connecté
     this.authSrv.profile().subscribe((data: any) => {
       this.current_User = data;
-      console.log("current_User", this.current_User);
     });
   }
+  //envoyer un message de contact au admin ou commerciale
   sendMessage() {
     this.submitted = true;
     let form = this.messageForm.value;
-
     form.email = this.current_User.email;
     form.user_id = this.current_User._id;
     console.log("form message", form);
@@ -43,6 +46,7 @@ export class BienvenuComponent implements OnInit {
         (data: any) => {
           if (data) {
             this.msgError = "";
+            //reset le formulaire aprés deux seconde
             setTimeout(() => {
               this.msgSuccess = `${data.msgsrv} `;
               this.submitted = false;
@@ -63,22 +67,12 @@ export class BienvenuComponent implements OnInit {
         }
       );
   }
+  //controle de champ
   get fnSubject() {
     return this.messageForm.get("subject");
   }
+  //controle de champ
   get fnMesage() {
     return this.messageForm.get("message");
   }
 }
-
-// geo = {
-//   type: "Feature" as GeoJS,
-//   properties: {
-//     code: "75",
-//     nom: "Nouvelle-Aquitaine",
-//   },
-//   geometry: {
-//     type: "MultiPolygon",
-
-//   },
-//  };

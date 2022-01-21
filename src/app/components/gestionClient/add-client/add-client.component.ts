@@ -1,45 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 
 import * as moment from "moment";
-import { AgriService } from 'src/app/services/agri.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { AgriService } from "src/app/services/agri.service";
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
-  selector: 'app-add-client',
-  templateUrl: './add-client.component.html',
-  styleUrls: ['./add-client.component.css']
+  selector: "app-add-client",
+  templateUrl: "./add-client.component.html",
+  styleUrls: ["./add-client.component.css"],
 })
 export class AddClientComponent implements OnInit {
-
+  //declaration des variables
+  //FormGroup pour le formulaire reactive form
   formClient: FormGroup;
   show = true;
-  activities
-  systems
-  projets
-  etats:any=[
-  {id:1,nom:"Client En Quotation"},
-  {id:2,nom:"Client En Quotation"},
-  {id:3,nom:"Contrat Cadre"},
+  activities;
+  systems;
+  projets;
+  //etats pour choisir l'etat de Client c'est à dire ou il est dans le procedure de son dossier
+  etats: any = [
+    { id: 1, nom: "Client En Quotation" },
+    { id: 2, nom: "Client En Quotation" },
+    { id: 3, nom: "Contrat Cadre" },
 
-    {id:4,nom:"Client En Conception"},
-    {id:5,nom:"Client En Construction"},
-    {id:6,nom:"Client En service"}
-
-  ]
+    { id: 4, nom: "Client En Conception" },
+    { id: 5, nom: "Client En Construction" },
+    { id: 6, nom: "Client En service" },
+  ];
   etats1;
-  roles
+  roles;
 
   constructor(
-  private fb:FormBuilder,
-  private authSrv:AuthService,
-  private agriSrv:AgriService,
-  private toastr:ToastrService
+    private fb: FormBuilder,
+    private authSrv: AuthService,
+    private agriSrv: AgriService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
-
+    //initiliser les formulaire d'ajout Client et donner les condition de validation de chaque attribut
     this.formClient = this.fb.group({
       prenom: [
         "",
@@ -67,11 +68,7 @@ export class AddClientComponent implements OnInit {
       codePostal: ["", Validators.required],
       ville: ["", Validators.required],
       pays: ["France", Validators.required],
-      complement:"",
-
-
-
-
+      complement: "",
 
       Src_Client: "",
       Date_src: "",
@@ -81,9 +78,6 @@ export class AddClientComponent implements OnInit {
       Date_StatCs: "",
       Date_StatEs: "",
     });
-
-
-
   }
   // signUpClient() {
   //   this.authSrv.addUser(this.formClient.value).subscribe(
@@ -102,35 +96,15 @@ export class AddClientComponent implements OnInit {
   //     // }
   //   );
   // }
-  getAllActivites() {
-    this.agriSrv.getAllActivites().subscribe((data: any) => {
-      this.activities = data;
-      console.log("activities", this.activities);
-    });
-  }
-  getAllSystems() {
-    this.agriSrv.getAllSystems().subscribe((data: any) => {
-      this.systems = data;
-      console.log("systems", this.systems);
-    });
-  }
-  getAllProjets() {
-    this.agriSrv.getAllProjets().subscribe((data: any) => {
-      this.projets = data;
-      console.log("projets", this.projets);
-    });
-  }
+
   getAllEtas() {
     this.agriSrv.getAllEtas().subscribe((data: any) => {
       this.etats1 = data;
-      console.log("etats", this.etats1);
     });
   }
   getAllRoles() {
     this.authSrv.getAllRole().subscribe((data: any) => {
       this.roles = data;
-
-      console.log("roles", this.roles);
     });
   }
 
@@ -140,7 +114,7 @@ export class AddClientComponent implements OnInit {
   get fnPrenom() {
     return this.formClient.get("prenom");
   }
-
+  // condition des erreurs dans chaque input
   get fnEmail() {
     return this.formClient.get("email");
   }
@@ -166,9 +140,9 @@ export class AddClientComponent implements OnInit {
   toggleshow() {
     this.show = !this.show;
   }
-
-  listenEtat(value:any) {
-    console.log("event.target.value : ",  value);
+  //methode pour ajouter  l'etat de client selon select liste choisit
+  listenEtat(value: any) {
+    console.log("event.target.value : ", value);
     let d = Date.now();
     let date = moment(d).format("lll");
     enum DateTypes {
@@ -192,4 +166,3 @@ export class AddClientComponent implements OnInit {
     this.formClient.get(formControlName).setValue(date);
   }
 }
-

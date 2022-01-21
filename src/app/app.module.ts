@@ -5,7 +5,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./components/home/home.component";
 import { AddClientComponent } from "./components/gestionClient/add-client/add-client.component";
-import { FicheClientComponent } from "./components/gestionClient/fiche-client/fiche-client.component";
+
 import { ListeClientComponent } from "./components/gestionClient/liste-client/liste-client.component";
 import { AddStaffComponent } from "./components/gestionStaff/add-staff/add-staff.component";
 import { ListaStaffComponent } from "./components/gestionStaff/lista-staff/lista-staff.component";
@@ -78,7 +78,7 @@ import { NgCircleProgressModule } from "ng-circle-progress";
     ListaStaffComponent,
     AddClientComponent,
     ListeClientComponent,
-    FicheClientComponent,
+
     CalendarComponent,
     DonnesConstructionComponent,
     ExploitationComponent,
